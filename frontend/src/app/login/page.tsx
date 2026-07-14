@@ -1,32 +1,33 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/store/authStore';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 export default function LoginPage() {
   const router = useRouter();
-  const { login } = useAuthStore();
+  const { setUser, setLoading } = useAuthStore();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    // Placeholder - will connect to backend API
-    const mockUser = {
-      id: '1',
-      name: 'Demo User',
-      email,
-      role: 'student',
-      streakCount: 0,
-      xp: 0,
-      level: 1,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    };
-    login(mockUser, 'mock-jwt-token');
-    router.push('/dashboard');
+ const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  setLoading(true);
+
+  const mockUser = {
+    id: "1",
+    name: "Demo User",
+    email,
+    role: "student" as const,
   };
+
+  setUser(mockUser);
+
+  setLoading(false);
+
+  router.push("/dashboard");
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4">

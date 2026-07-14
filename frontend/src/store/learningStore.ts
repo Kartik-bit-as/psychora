@@ -19,6 +19,7 @@ interface LearningActions {
   setSelectedTopic: (topic: string | null) => void;
   completeQuiz: (quizId: string) => void;
   resetLearning: () => void;
+  saveProgress: (lessonId: string, progress: number) => void;
 }
 
 const learningInitialState: LearningState = {
@@ -82,6 +83,23 @@ export const useLearningStore = create<LearningState & LearningActions>()(
             false,
             'learning/completeQuiz'
           ),
+
+          saveProgress: (lessonId, progress) =>
+  set(
+    (state) => {
+      const completedLessons =
+        progress >= 100 && !state.completedLessons.includes(lessonId)
+          ? [...state.completedLessons, lessonId]
+          : state.completedLessons;
+
+      return {
+        progressPercentage: Math.min(100, Math.max(0, progress)),
+        completedLessons,
+      };
+    },
+    false,
+    "learning/saveProgress"
+  ),
 
         resetLearning: () => set(learningInitialState, false, 'learning/resetLearning'),
       }),

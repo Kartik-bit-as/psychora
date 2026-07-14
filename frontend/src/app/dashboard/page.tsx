@@ -17,7 +17,6 @@ import type {
 } from "@/components/dashboard/types";
 import Navbar from "@/components/layout/Navbar";
 import Sidebar from "@/components/layout/Sidebar";
-import { useAuthStore } from "@/store/authStore";
 import {
   Baby,
   Brain,
@@ -103,7 +102,7 @@ const DAILY_GOALS: DailyGoal[] = [
 ];
 
 export default function DashboardPage() {
-  const { user } = useAuthStore();
+
 
   return (
     <div
@@ -122,7 +121,7 @@ export default function DashboardPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* LEFT / CENTER */}
             <section className="lg:col-span-2 space-y-6">
-              <Hero user={user} userStats={userStats} />
+              <Hero />
               <SubjectGrid subjects={learningSubjects} />
               <ContinueLearning items={continueLearning} />
 
@@ -147,7 +146,7 @@ export default function DashboardPage() {
 
             {/* RIGHT PANEL */}
             <aside className="space-y-6">
-              <ProgressPanel userStats={userStats} progress={PROGRESS} />
+              <ProgressPanel />
 
               {/* Daily Goals */}
               <div className={`${CARD} p-5`}>

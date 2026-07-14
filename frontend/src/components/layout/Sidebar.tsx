@@ -7,11 +7,10 @@ import {
   FiBook,
   FiBookOpen,
   FiEdit3,
-  FiGitBranch,
   FiHome,
   FiLayers,
   FiTarget,
-  FiZap,
+  FiZap
 } from 'react-icons/fi';
 import NavItem from '../sidebar/NavItem';
 import StreakBadge from '../sidebar/StreakBadge';
@@ -29,7 +28,7 @@ export default function Sidebar() {
   const navItems = [
     { href: '/', icon: FiHome, label: 'Home' },
     { href: '/dashboard', icon: FiBook, label: 'My Space' },
-    { href: '/tree', icon: FiGitBranch, label: 'Neural Tree' },
+
     { href: '/learn', icon: FiBookOpen, label: 'Learn' },
     { href: '/flashcards', icon: FiLayers, label: 'Flashcards' },
     { href: '/quiz', icon: FiTarget, label: 'Quiz' },
