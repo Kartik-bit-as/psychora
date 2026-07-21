@@ -1,8 +1,8 @@
 import {
-    DifficultyLevel,
-    PrismaClient,
-    UserRole,
-    type User,
+  DifficultyLevel,
+  PrismaClient,
+  UserRole,
+  type User,
 } from "@prisma/client";
 
 const prisma = new PrismaClient();
@@ -21,6 +21,8 @@ type QuestionSeed = {
 type QuizSeed = {
   title: string;
   difficulty: DifficultyLevel;
+  timeLimit?: number;
+  passMark?: number;
   questions: QuestionSeed[];
 };
 
